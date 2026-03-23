@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Catálogo - Subnaro</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="./style.catalogo.css">
+</head>
+
+<body>
+
+<header class="header">
+  <img src="../img/logo.png" alt="Logo Subnaro">
+  <nav>
+    <a href="../index.html">Inicio</a>
+    <a href="#">Catálogo</a>
+  </nav>
+</header>
+
+<section class="productos">
+  <h2>Catálogo Completo</h2>
+
+  <div class="filtros">
+    <button onclick="filtrar('todos')">Todos</button>
+    <button onclick="filtrar('planetas')">Planetas</button>
+    <button onclick="filtrar('anime')">Anime</button>
+    <button onclick="filtrar('personalizado')">Personalizados</button>
+  </div>
+
+  <div id="contenedor-productos" class="grid"></div>
+</section>
+
+<!-- MODAL GALERÍA -->
+<div id="modal-galeria" class="modal-galeria oculto">
+  <div class="modal-overlay" onclick="cerrarModal()"></div>
+
+  <div class="modal-contenido">
+    <button class="cerrar-modal" onclick="cerrarModal()">×</button>
+
+    <div class="modal-imagen-principal-box">
+      <button class="flecha flecha-izq" onclick="imagenAnterior()">❮</button>
+      <img id="modal-imagen-principal" src="" alt="Imagen ampliada">
+      <button class="flecha flecha-der" onclick="imagenSiguiente()">❯</button>
+    </div>
+
+    <div id="modal-miniaturas" class="modal-miniaturas"></div>
+  </div>
+</div>
+
+<script src="productosCatalogo.js"></script>
+<script src="catalogo.js"></script>
+
+</body>
+</html>
