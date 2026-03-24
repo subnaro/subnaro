@@ -9,9 +9,14 @@ const productos = [
     precio: 7500,
     imagen: "destacados/personalizable.png"
   },
-    {
+  {
     nombre: "Taza Planetas",
     precio: 7000,
     imagen: "destacados/planetas.png"
+  },
+  {
+    nombre: "Remera Subnaro",
+    precio: 5300,
+    imagen: "destacados/remerasubnaro.png"
   }
 ];
