@@ -75,8 +75,8 @@ function cargarSeccion(seccion) {
       <section class="hero">
         <div class="overlay"></div>
         <div class="hero-content">
-          <h1>Diseños que se convierten en regalos</h1>
-          <p>Tazas personalizadas con tu estilo</p>
+        <h1>Regalos únicos que hablan por vos</h1>
+        <p>Personalizá tazas, remeras y más con tu estilo</p>
           <a href="https://wa.me/5491160584396" target="_blank" class="btn-wsp btn-llamativo">
             Pedir por WhatsApp
           </a>
