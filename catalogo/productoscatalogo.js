@@ -1,4 +1,4 @@
-function generarGaleria(base, cantidad, carpeta = "./img.catalogo/", extension = "png") {
+function generarGaleria(base, cantidad, carpeta = "catalogo/img.catalogo/", extension = "png") {
   const imagenes = [];
 
   for (let i = 1; i <= cantidad; i++) {
