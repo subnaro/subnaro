@@ -183,10 +183,14 @@ nav a:hover {
 
 .productos.fondo2 {
   background: url("img/fondo2.png") center/cover no-repeat;
+  margin: 0;
+  padding: 80px 0;
 }
 
 .productos-content {
-  padding: 80px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 /* TITULO MEJORADO */
