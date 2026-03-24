@@ -1,17 +1,20 @@
 let galeriaActual = [];
 let indiceActual = 0;
 
-document.addEventListener("DOMContentLoaded", () => {
+// 🔥 IMPORTANTE: función de inicio manual
+function iniciarCatalogo() {
   mostrarProductos(productosCatalogo);
-});
+}
 
 function mostrarProductos(lista) {
   const contenedor = document.getElementById("contenedor-productos");
+  if (!contenedor) return;
+
   contenedor.innerHTML = "";
 
-  lista.forEach((producto, index) => {
+  lista.forEach((producto) => {
     const mensaje = `Hola, quiero consultar por: ${producto.nombre} - $${producto.precio}`;
-    const url = `https://wa.me/549XXXXXXXXXX?text=${encodeURIComponent(mensaje)}`;
+    const url = `https://wa.me/5491160584396?text=${encodeURIComponent(mensaje)}`;
 
     contenedor.innerHTML += `
       <div class="card">
@@ -52,6 +55,7 @@ function filtrar(categoria) {
 /* MODAL */
 function abrirModalPorProducto(indiceProducto) {
   const producto = productosCatalogo[indiceProducto];
+
   galeriaActual = producto.galeria && producto.galeria.length > 0
     ? producto.galeria
     : [producto.imagen];
@@ -91,18 +95,14 @@ function renderizarMiniaturas() {
 
 function imagenSiguiente() {
   indiceActual++;
-  if (indiceActual >= galeriaActual.length) {
-    indiceActual = 0;
-  }
+  if (indiceActual >= galeriaActual.length) indiceActual = 0;
   renderizarImagenModal();
   renderizarMiniaturas();
 }
 
 function imagenAnterior() {
   indiceActual--;
-  if (indiceActual < 0) {
-    indiceActual = galeriaActual.length - 1;
-  }
+  if (indiceActual < 0) indiceActual = galeriaActual.length - 1;
   renderizarImagenModal();
   renderizarMiniaturas();
 }
@@ -113,13 +113,13 @@ function irAImagen(indice) {
   renderizarMiniaturas();
 }
 
-/* CERRAR CON ESC */
+/* TECLADO */
 document.addEventListener("keydown", (e) => {
   const modal = document.getElementById("modal-galeria");
 
-  if (!modal.classList.contains("oculto")) {
-    if (e.key === "Escape") cerrarModal();
-    if (e.key === "ArrowRight") imagenSiguiente();
-    if (e.key === "ArrowLeft") imagenAnterior();
-  }
+  if (!modal || modal.classList.contains("oculto")) return;
+
+  if (e.key === "Escape") cerrarModal();
+  if (e.key === "ArrowRight") imagenSiguiente();
+  if (e.key === "ArrowLeft") imagenAnterior();
 });
