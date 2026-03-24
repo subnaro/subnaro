@@ -223,12 +223,6 @@
   text-align: center;
 }
 
-#header-container .activo-simulador,
-.activo-simulador {
-  color: #333;
-  font-weight: 700;
-}
-
 @media (max-width: 900px) {
   .sim-hero {
     padding: 36px 18px 18px;

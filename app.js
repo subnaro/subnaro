@@ -2,6 +2,23 @@ document.addEventListener("DOMContentLoaded", () => {
   cargarSeccion("inicio");
 });
 
+function eliminarScriptSiExiste(src) {
+  const scripts = document.querySelectorAll(`script[src="${src}"]`);
+  scripts.forEach(script => script.remove());
+}
+
+function cargarScript(src, callback) {
+  eliminarScriptSiExiste(src);
+
+  const script = document.createElement("script");
+  script.src = src;
+  script.onload = () => {
+    if (typeof callback === "function") callback();
+  };
+
+  document.body.appendChild(script);
+}
+
 function cargarSeccion(seccion) {
   const contenedor = document.getElementById("contenido");
 
@@ -61,58 +78,61 @@ function cargarSeccion(seccion) {
     `;
 
     cargarProductos();
+    return;
   }
 
-  // 🔥 CATÁLOGO (CORREGIDO BIEN)
   if (seccion === "catalogo") {
     fetch("catalogo/catalogo.html")
       .then(res => res.text())
       .then(html => {
         contenedor.innerHTML = html;
 
-        // Cargar primero los productos
-        const script1 = document.createElement("script");
-        script1.src = "catalogo/productoscatalogo.js";
-
-        script1.onload = () => {
-          // Luego cargar lógica
-          const script2 = document.createElement("script");
-          script2.src = "catalogo/catalogo.js";
-
-          script2.onload = () => {
-            // Iniciar catálogo
+        cargarScript("catalogo/productoscatalogo.js", () => {
+          cargarScript("catalogo/catalogo.js", () => {
             if (typeof iniciarCatalogo === "function") {
               iniciarCatalogo();
             }
-          };
-
-          document.body.appendChild(script2);
-        };
-
-        document.body.appendChild(script1);
+          });
+        });
       });
+
+    return;
   }
 
-  // SIMULADOR (lo arreglamos después)
   if (seccion === "simulador") {
     fetch("simulador/simulador.html")
       .then(res => res.text())
       .then(html => {
         contenedor.innerHTML = html;
+
+        cargarScript("simulador/simulador.js", () => {
+          if (typeof iniciarSimulador === "function") {
+            iniciarSimulador();
+          }
+        });
       });
+
+    return;
   }
 
   if (seccion === "destacados") {
     cargarSeccion("inicio");
     setTimeout(() => {
-      document.getElementById("productos").scrollIntoView({ behavior: "smooth" });
+      const productos = document.getElementById("productos");
+      if (productos) {
+        productos.scrollIntoView({ behavior: "smooth" });
+      }
     }, 200);
+    return;
   }
 
   if (seccion === "contacto") {
     cargarSeccion("inicio");
     setTimeout(() => {
-      document.getElementById("contacto").scrollIntoView({ behavior: "smooth" });
+      const contacto = document.getElementById("contacto");
+      if (contacto) {
+        contacto.scrollIntoView({ behavior: "smooth" });
+      }
     }, 200);
   }
 }
@@ -130,11 +150,11 @@ function cargarProductos() {
 
     contenedor.innerHTML += `
       <div class="card">
-        <img src="${producto.imagen}" class="img-producto">
+        <img src="${producto.imagen}" class="img-producto" alt="${producto.nombre}">
         <div class="card-content">
           <h3>${producto.nombre}</h3>
           <p class="precio">$${producto.precio}</p>
-          <a href="${url}" target="_blank">
+          <a href="${url}" target="_blank" rel="noopener noreferrer">
             <button>Consultar</button>
           </a>
         </div>
