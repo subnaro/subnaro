@@ -4,13 +4,6 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #f7fbff, #eef6ff);
-  color: #1a1a1a;
-  min-height: 100vh;
-}
-
 .sim-hero {
   padding: 48px 20px 24px;
   text-align: center;
@@ -42,13 +35,14 @@ body {
   text-decoration: none;
   font-weight: 700;
   padding: 14px 24px;
-  border-radius: 14px;
-  transition: transform 0.18s ease, opacity 0.18s ease;
+  border-radius: 30px;
+  transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease;
 }
 
 .btn-sim-wsp:hover,
 .btn-sim-pedido:hover {
   transform: translateY(-1px);
+  background: #1ebe5d;
 }
 
 .sim-contenedor {
@@ -152,6 +146,11 @@ body {
   width: 100%;
   text-align: center;
   background: #1787ff;
+  border-radius: 14px;
+}
+
+.sim-accion-extra .btn-sim-pedido:hover {
+  background: #0f74df;
 }
 
 .escena-preview {
@@ -225,7 +224,8 @@ body {
 }
 
 .activo-simulador {
-  font-weight: 700;
+  color: #333;
+  font-weight: 600;
 }
 
 @media (max-width: 900px) {

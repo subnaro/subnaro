@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Catálogo - Subnaro</title>
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="./style.catalogo.css">
@@ -9,46 +10,91 @@
 
 <body>
 
-<header class="header">
-  <img src="../img/logo.png" alt="Logo Subnaro">
-  <nav>
-    <a href="../index.html">Inicio</a>
-    <a href="#">Catálogo</a>
-  </nav>
-</header>
-
-<section class="productos">
-  <h2>Catálogo Completo</h2>
-
-  <div class="filtros">
-    <button onclick="filtrar('todos')">Todos</button>
-    <button onclick="filtrar('planetas')">Planetas</button>
-    <button onclick="filtrar('anime')">Anime</button>
-    <button onclick="filtrar('personalizado')">Personalizados</button>
-  </div>
-
-  <div id="contenedor-productos" class="grid"></div>
-</section>
-
-<!-- MODAL GALERÍA -->
-<div id="modal-galeria" class="modal-galeria oculto">
-  <div class="modal-overlay" onclick="cerrarModal()"></div>
-
-  <div class="modal-contenido">
-    <button class="cerrar-modal" onclick="cerrarModal()">×</button>
-
-    <div class="modal-imagen-principal-box">
-      <button class="flecha flecha-izq" onclick="imagenAnterior()">❮</button>
-      <img id="modal-imagen-principal" src="" alt="Imagen ampliada">
-      <button class="flecha flecha-der" onclick="imagenSiguiente()">❯</button>
+  <header class="header">
+    <div class="logo-container">
+      <a href="../index.html">
+        <img src="../img/logo.png" alt="Logo Subnaro">
+      </a>
     </div>
 
-    <div id="modal-miniaturas" class="modal-miniaturas"></div>
-  </div>
-</div>
+    <nav>
+      <a href="../index.html">Inicio</a>
+      <a href="../index.html#productos">Destacados</a>
+      <a href="./catalogo.html" class="btn-wsp">Ver Catálogo</a>
+      <a href="../simulador/simulador.html">Simulador</a>
+      <a href="../index.html#contacto">Contacto</a>
+    </nav>
+  </header>
 
-<script src="productoscatalogo.js"></script>
-<script src="catalogo.js"></script>
+  <section class="productos">
+    <h2>Catálogo Completo</h2>
+
+    <div class="filtros">
+      <button onclick="filtrar('todos')">Todos</button>
+      <button onclick="filtrar('planetas')">Planetas</button>
+      <button onclick="filtrar('anime')">Anime</button>
+      <button onclick="filtrar('personalizado')">Personalizados</button>
+    </div>
+
+    <div id="contenedor-productos" class="grid"></div>
+  </section>
+
+  <!-- MODAL GALERÍA -->
+  <div id="modal-galeria" class="modal-galeria oculto">
+    <div class="modal-overlay" onclick="cerrarModal()"></div>
+
+    <div class="modal-contenido">
+      <button class="cerrar-modal" onclick="cerrarModal()">×</button>
+
+      <div class="modal-imagen-principal-box">
+        <button class="flecha flecha-izq" onclick="imagenAnterior()">❮</button>
+        <img id="modal-imagen-principal" src="" alt="Imagen ampliada">
+        <button class="flecha flecha-der" onclick="imagenSiguiente()">❯</button>
+      </div>
+
+      <div id="modal-miniaturas" class="modal-miniaturas"></div>
+    </div>
+  </div>
+
+  <footer class="footer-subnaro">
+    <div class="footer-container">
+      <div class="footer-col footer-izq">
+        <h3>Medios de pago</h3>
+        <p>Podés abonar por transferencia y tarjetas</p>
+
+        <div class="footer-pagos">
+          <span class="pago-item">🏦 Transferencia</span>
+          <span class="pago-item">💳 Tarjetas</span>
+        </div>
+
+        <p class="footer-web">www.subnaro.com.ar</p>
+        <p class="footer-copy">Todos los derechos reservados</p>
+      </div>
+
+      <div class="footer-col footer-der">
+        <h3>Regalá con tu estilo</h3>
+        <p>Animate a regalar algo con tu estilo personalizado</p>
+
+        <div class="footer-envio">
+          <span class="envio-icono">🇦🇷</span>
+          <span>Envíos a todo el país</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © Subnaro - Todos los derechos reservados
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5491160584396" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 32 32" width="28" height="28">
+      <path fill="white" d="M19.11 17.36c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.28-.47-2.44-1.5-.9-.8-1.5-1.77-1.68-2.07-.17-.3-.02-.46.13-.6.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.48-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.5s1.07 2.9 1.22 3.1c.15.2 2.1 3.2 5.1 4.5.7.3 1.25.48 1.68.62.7.22 1.33.2 1.83.12.56-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35zM16 3C8.8 3 3 8.8 3 16c0 2.8.9 5.4 2.4 7.5L3 29l5.7-2.3C10.7 28 13.3 29 16 29c7.2 0 13-5.8 13-13S23.2 3 16 3z"/>
+    </svg>
+  </a>
+
+  <script src="productoscatalogo.js"></script>
+  <script src="catalogo.js"></script>
 
 </body>
 </html>
