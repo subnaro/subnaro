@@ -223,9 +223,10 @@
   text-align: center;
 }
 
+#header-container .activo-simulador,
 .activo-simulador {
   color: #333;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 @media (max-width: 900px) {
@@ -267,5 +268,53 @@
   .btn-sim-pedido {
     width: 100%;
     max-width: 320px;
+  }
+}
+
+@media (max-width: 640px) {
+  .sim-hero h1 {
+    font-size: 1.7rem;
+  }
+
+  .sim-hero p {
+    font-size: 0.96rem;
+  }
+
+  .sim-contenedor {
+    padding: 16px;
+    gap: 18px;
+  }
+
+  .panel-controles,
+  .panel-preview {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .grupo-botones {
+    flex-direction: column;
+  }
+
+  .escena-preview {
+    min-height: 360px;
+    padding: 14px;
+  }
+
+  .taza {
+    width: 270px;
+  }
+
+  .preview-diseno {
+    top: 86px;
+    left: 91px;
+    width: 88px;
+    height: 88px;
+  }
+
+  .preview-texto {
+    top: 186px;
+    left: 63px;
+    width: 145px;
+    font-size: 16px;
   }
 }
