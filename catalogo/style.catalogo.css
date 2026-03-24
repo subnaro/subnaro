@@ -256,3 +256,120 @@
     height: 58px;
   }
 }
+@media (max-width: 768px) {
+  .productos {
+    padding: 95px 16px 50px;
+  }
+
+  .productos h2 {
+    font-size: 26px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .filtros {
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .filtros button {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .card {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .card img,
+  .card .img-producto {
+    height: 190px;
+  }
+
+  .card h3 {
+    font-size: 18px;
+    margin: 8px 0;
+  }
+
+  .card p {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .card button {
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .modal-contenido {
+    width: 94%;
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .modal-imagen-principal-box {
+    min-height: 300px;
+    padding: 10px;
+  }
+
+  #modal-imagen-principal {
+    max-height: 280px;
+  }
+
+  .flecha {
+    width: 38px;
+    height: 38px;
+    font-size: 20px;
+  }
+
+  .flecha-izq {
+    left: 8px;
+  }
+
+  .flecha-der {
+    right: 8px;
+  }
+
+  .miniatura {
+    width: 54px;
+    height: 54px;
+  }
+}
+
+@media (max-width: 480px) {
+  .productos {
+    padding: 90px 12px 40px;
+  }
+
+  .productos h2 {
+    font-size: 22px;
+  }
+
+  .filtros {
+    gap: 8px;
+  }
+
+  .filtros button {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+
+  .card img,
+  .card .img-producto {
+    height: 170px;
+  }
+
+  .modal-imagen-principal-box {
+    min-height: 240px;
+  }
+
+  #modal-imagen-principal {
+    max-height: 220px;
+  }
+}
