@@ -1,6 +1,50 @@
 document.addEventListener("DOMContentLoaded", () => {
+  configurarMenuHamburguesa();
   cargarSeccion("inicio");
 });
+
+function configurarMenuHamburguesa() {
+  const menuToggle = document.getElementById("menuToggle");
+  const mainNav = document.getElementById("mainNav");
+
+  if (!menuToggle || !mainNav) return;
+
+  menuToggle.addEventListener("click", () => {
+    const abierto = mainNav.classList.toggle("open");
+    menuToggle.classList.toggle("active", abierto);
+    menuToggle.setAttribute("aria-expanded", abierto ? "true" : "false");
+  });
+
+  mainNav.querySelectorAll("a").forEach((enlace) => {
+    enlace.addEventListener("click", () => {
+      cerrarMenuHamburguesa();
+    });
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      cerrarMenuHamburguesa();
+    }
+  });
+
+  document.addEventListener("click", (e) => {
+    const clicFueraDelMenu = !mainNav.contains(e.target) && !menuToggle.contains(e.target);
+    if (clicFueraDelMenu) {
+      cerrarMenuHamburguesa();
+    }
+  });
+}
+
+function cerrarMenuHamburguesa() {
+  const menuToggle = document.getElementById("menuToggle");
+  const mainNav = document.getElementById("mainNav");
+
+  if (!menuToggle || !mainNav) return;
+
+  mainNav.classList.remove("open");
+  menuToggle.classList.remove("active");
+  menuToggle.setAttribute("aria-expanded", "false");
+}
 
 function eliminarScriptSiExiste(src) {
   const scripts = document.querySelectorAll(`script[src="${src}"]`);
@@ -22,7 +66,8 @@ function cargarScript(src, callback) {
 function cargarSeccion(seccion) {
   const contenedor = document.getElementById("contenido");
 
-  // 🔥 SIEMPRE SCROLL ARRIBA AL CAMBIAR SECCIÓN
+  cerrarMenuHamburguesa();
+
   window.scrollTo(0, 0);
 
   if (seccion === "inicio") {
