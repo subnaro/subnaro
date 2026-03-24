@@ -20,5 +20,11 @@ const productosCatalogo = [
     precio: 7000,
     imagen: "catalogo/img.catalogo/planetas1.png",
     galeria: generarGaleria("planetas", 1)
+  },
+  {
+    nombre: "Orco",
+    precio: 5300,
+    imagen: "catalogo/img.catalogo/orco1.png",
+    galeria: generarGaleria("planetas", 1)
   }
 ];
