@@ -22,9 +22,9 @@ const productosCatalogo = [
     galeria: generarGaleria("planetas", 1)
   },
   {
-    nombre: "Orco",
+    nombre: "Orco Drick",
     precio: 5300,
     imagen: "catalogo/img.catalogo/orco1.png",
-    galeria: generarGaleria("planetas", 1)
+    galeria: generarGaleria("orco", 1)
   }
 ];
