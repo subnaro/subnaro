@@ -63,31 +63,37 @@ function cargarSeccion(seccion) {
     cargarProductos();
   }
 
+  // 🔥 CATÁLOGO (CORREGIDO BIEN)
   if (seccion === "catalogo") {
     fetch("catalogo/catalogo.html")
       .then(res => res.text())
       .then(html => {
         contenedor.innerHTML = html;
 
-        // 🔥 CARGAR JS DEL CATÁLOGO DINÁMICAMENTE
-
+        // Cargar primero los productos
         const script1 = document.createElement("script");
         script1.src = "catalogo/productoscatalogo.js";
 
-        const script2 = document.createElement("script");
-        script2.src = "catalogo/catalogo.js";
+        script1.onload = () => {
+          // Luego cargar lógica
+          const script2 = document.createElement("script");
+          script2.src = "catalogo/catalogo.js";
+
+          script2.onload = () => {
+            // Iniciar catálogo
+            if (typeof iniciarCatalogo === "function") {
+              iniciarCatalogo();
+            }
+          };
+
+          document.body.appendChild(script2);
+        };
 
         document.body.appendChild(script1);
-        document.body.appendChild(script2);
-
-        script2.onload = () => {
-          if (typeof iniciarCatalogo === "function") {
-            iniciarCatalogo();
-          }
-        };
       });
   }
 
+  // SIMULADOR (lo arreglamos después)
   if (seccion === "simulador") {
     fetch("simulador/simulador.html")
       .then(res => res.text())
