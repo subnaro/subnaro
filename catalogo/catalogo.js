@@ -124,3 +124,8 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight") imagenSiguiente();
   if (e.key === "ArrowLeft") imagenAnterior();
 });
+
+/* 🔥 ESTA ES LA CLAVE */
+document.addEventListener("DOMContentLoaded", () => {
+  iniciarCatalogo();
+});
