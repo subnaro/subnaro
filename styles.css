@@ -69,15 +69,14 @@ nav a:hover {
   justify-content: center;
   position: relative;
   text-align: center;
+  overflow: hidden;
 }
 
 .hero .overlay {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0, 0, 0, 0.25);
-  top: 0;
-  left: 0;
+  z-index: 1;
 }
 
 .hero-content {
@@ -469,14 +468,12 @@ nav a:hover {
   }
 
   .hero {
-    min-height: auto;
-    height: 540px;
-    padding: 0 16px 24px;
-    align-items: flex-end;
-    background-size: 100% auto;
+    height: 62vw;
+    min-height: 340px;
+    max-height: 520px;
+    background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
-    background-color: #fff;
   }
 
   .hero .overlay {
@@ -484,18 +481,14 @@ nav a:hover {
   }
 
   .hero-content {
-    max-width: 100%;
-    padding: 18px 10px 10px;
-  }
-
-  .productos.fondo2 {
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-  }
-
-  .productos-content {
-    padding: 60px 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(92%, 560px);
+    transform: translate(-50%, -50%);
+    max-width: none;
+    padding: 18px 14px;
+    text-align: center;
   }
 
   .hero h1 {
@@ -507,6 +500,16 @@ nav a:hover {
   .hero p {
     font-size: 16px;
     margin-bottom: 18px;
+  }
+
+  .productos.fondo2 {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  .productos-content {
+    padding: 60px 20px;
   }
 
   .footer-container {
@@ -554,14 +557,15 @@ nav a:hover {
   }
 
   .hero {
-    height: 500px;
-    padding: 0 12px 20px;
-    background-size: 100% auto;
+    height: 68vw;
+    min-height: 320px;
+    max-height: 470px;
     background-position: center top;
   }
 
   .hero-content {
-    padding: 14px 8px 8px;
+    width: 92%;
+    padding: 16px 10px;
   }
 
   .whatsapp-float {
@@ -605,14 +609,15 @@ nav a:hover {
   }
 
   .hero {
-    height: 500px;
-    padding: 0 12px 20px;
-    background-size: 100% auto;
+    height: 72vw;
+    min-height: 300px;
+    max-height: 430px;
     background-position: center top;
   }
 
   .hero-content {
-    padding: 14px 8px 8px;
+    width: 94%;
+    padding: 14px 8px;
   }
 
   .hero h1 {
