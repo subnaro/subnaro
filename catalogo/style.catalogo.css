@@ -32,10 +32,10 @@ body {
 
 /* CONTENIDO */
 .catalogo .productos {
-  padding: 110px 20px 70px;
-  text-align: center;
-  max-width: 1200px;
+  padding: 110px 40px 70px;
+  max-width: 1300px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .productos h2 {
