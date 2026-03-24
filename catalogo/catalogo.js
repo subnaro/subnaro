@@ -11,17 +11,21 @@ function mostrarProductos(lista) {
 
   contenedor.innerHTML = "";
 
-  lista.forEach((producto, index) => {
+  lista.forEach((producto) => {
+    const indiceOriginal = productosCatalogo.findIndex(
+      p => p.nombre === producto.nombre
+    );
+
     const mensaje = `Hola, quiero consultar por: ${producto.nombre} - $${producto.precio}`;
     const url = `https://wa.me/5491160584396?text=${encodeURIComponent(mensaje)}`;
 
     contenedor.innerHTML += `
       <div class="card">
-        <img
-          src="${producto.imagen}"
-          alt="${producto.nombre}"
+        <img 
+          src="${producto.imagen}" 
+          alt="${producto.nombre}" 
           class="img-producto"
-          onclick="abrirModalPorProducto(${index})"
+          onclick="abrirModalPorProducto(${indiceOriginal})"
         >
 
         <div class="card-content">
@@ -41,10 +45,9 @@ function abrirModalPorProducto(indiceProducto) {
   const producto = productosCatalogo[indiceProducto];
   if (!producto) return;
 
-  galeriaActual =
-    producto.galeria && producto.galeria.length > 0
-      ? producto.galeria
-      : [producto.imagen];
+  galeriaActual = producto.galeria && producto.galeria.length > 0
+    ? producto.galeria
+    : [producto.imagen];
 
   indiceActual = 0;
 
@@ -82,9 +85,9 @@ function renderizarMiniaturas() {
 
   galeriaActual.forEach((img, index) => {
     contenedorMiniaturas.innerHTML += `
-      <img
-        src="${img}"
-        class="miniatura ${index === indiceActual ? "activa" : ""}"
+      <img 
+        src="${img}" 
+        class="miniatura ${index === indiceActual ? "activa" : ""}" 
         onclick="irAImagen(${index})"
         alt="Miniatura ${index + 1}"
       >
@@ -120,8 +123,4 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") cerrarModal();
   if (e.key === "ArrowRight") imagenSiguiente();
   if (e.key === "ArrowLeft") imagenAnterior();
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  iniciarCatalogo();
 });

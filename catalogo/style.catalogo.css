@@ -48,11 +48,6 @@ body {
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.productos p {
-  color: #666;
-  margin-bottom: 30px;
-}
-
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -60,6 +55,7 @@ body {
   align-items: start;
 }
 
+/* TARJETAS */
 .card {
   background: #fff;
   border-radius: 15px;
@@ -118,7 +114,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* MODAL GALERÍA */
+/* MODAL */
 .oculto {
   display: none !important;
 }
@@ -127,6 +123,7 @@ body {
   position: fixed;
   inset: 0;
   z-index: 9999;
+  display: flex; /* 🔥 IMPORTANTE */
   align-items: center;
   justify-content: center;
 }
@@ -157,10 +154,10 @@ body {
   font-size: 34px;
   cursor: pointer;
   color: #111;
-  line-height: 1;
   z-index: 3;
 }
 
+/* IMAGEN PRINCIPAL */
 .modal-imagen-principal-box {
   position: relative;
   display: flex;
@@ -169,7 +166,6 @@ body {
   background: #f6f6f6;
   border-radius: 14px;
   min-height: 500px;
-  overflow: hidden;
 }
 
 #modal-imagen-principal {
@@ -179,10 +175,12 @@ body {
   display: block;
 }
 
+/* 🔥 ESTO ELIMINA LA IMAGEN ROTA */
 #modal-imagen-principal:not([src]) {
   display: none;
 }
 
+/* FLECHAS */
 .flecha {
   position: absolute;
   top: 50%;
@@ -195,8 +193,6 @@ body {
   cursor: pointer;
   font-size: 24px;
   font-weight: bold;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-  z-index: 2;
 }
 
 .flecha-izq {
@@ -207,6 +203,7 @@ body {
   right: 15px;
 }
 
+/* MINIATURAS */
 .modal-miniaturas {
   display: flex;
   gap: 10px;
@@ -223,174 +220,41 @@ body {
   border: 2px solid transparent;
   background: #f5f5f5;
   cursor: pointer;
-  padding: 4px;
-  transition: all 0.2s ease;
-}
-
-.miniatura:hover {
-  transform: scale(1.05);
 }
 
 .miniatura.activa {
   border-color: #000;
 }
 
-/* TABLET */
+/* MOBILE */
 @media (max-width: 768px) {
-  .header {
-    padding: 10px 12px;
-    gap: 10px;
-  }
-
-  .header img,
-  .logo-container img {
-    height: 42px;
-  }
-
-  .nav-principal {
-    gap: 8px;
-    flex: 1;
-    justify-content: flex-end;
-  }
-
-  .nav-principal a {
-    font-size: 11px;
-    line-height: 1.1;
-  }
-
-  .nav-principal .btn-wsp {
-    padding: 10px 14px;
-    font-size: 11px;
-  }
-
   .productos {
     padding: 95px 16px 50px;
   }
 
-  .productos h2 {
-    font-size: 26px;
-    line-height: 1.2;
-    margin-bottom: 24px;
-  }
-
   .grid {
     grid-template-columns: 1fr;
-    gap: 18px;
   }
 
-  .card {
-    padding: 14px;
-    border-radius: 14px;
-  }
-
-  .card img,
-  .card .img-producto {
+  .card img {
     height: 190px;
-  }
-
-  .card h3 {
-    font-size: 18px;
-    margin: 8px 0;
-  }
-
-  .card p {
-    font-size: 16px;
-    margin-bottom: 12px;
-  }
-
-  .card button {
-    padding: 12px;
-    font-size: 15px;
-  }
-
-  .modal-contenido-galeria {
-    width: 94%;
-    padding: 14px;
-    border-radius: 14px;
   }
 
   .modal-imagen-principal-box {
     min-height: 300px;
-    padding: 10px;
-  }
-
-  #modal-imagen-principal {
-    max-height: 280px;
-  }
-
-  .flecha {
-    width: 38px;
-    height: 38px;
-    font-size: 20px;
-  }
-
-  .flecha-izq {
-    left: 8px;
-  }
-
-  .flecha-der {
-    right: 8px;
-  }
-
-  .miniatura {
-    width: 54px;
-    height: 54px;
   }
 }
 
-/* CELULAR */
 @media (max-width: 480px) {
-  .header {
-    padding: 8px 10px;
-    gap: 8px;
-  }
-
-  .header img,
-  .logo-container img {
-    height: 34px;
-  }
-
-  .nav-principal {
-    gap: 6px;
-  }
-
-  .nav-principal a {
-    font-size: 10px;
-    letter-spacing: -0.1px;
-  }
-
-  .nav-principal .btn-wsp {
-    padding: 8px 10px;
-    font-size: 10px;
-    border-radius: 22px;
-  }
-
   .productos {
     padding: 82px 12px 40px;
   }
 
-  .productos h2 {
-    font-size: 22px;
-    margin-bottom: 20px;
-  }
-
-  .card img,
-  .card .img-producto {
+  .card img {
     height: 170px;
   }
 
   .modal-imagen-principal-box {
     min-height: 240px;
-  }
-
-  #modal-imagen-principal {
-    max-height: 220px;
-  }
-
-  .whatsapp-float {
-    width: 56px;
-    height: 56px;
-    right: 16px;
-    bottom: 16px;
   }
 }
