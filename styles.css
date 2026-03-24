@@ -41,8 +41,8 @@ nav a:hover {
 
 /* HERO */
 .hero {
-  height: 100vh;
-  background: url("img/fondo.png") center/cover no-repeat;
+  min-height: 100vh;
+  background: url("img/fondo.png") center center / cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -400,5 +400,36 @@ nav a:hover {
 
   .footer-col p {
     font-size: 16px;
+  }
+}
+@media (max-width: 768px) {
+  .hero {
+    min-height: 72vh;
+    padding: 120px 20px 70px;
+    background-position: center top;
+    align-items: flex-start;
+  }
+
+  .hero-content {
+    max-width: 340px;
+    margin-top: 40px;
+    padding: 0;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+
+  .hero p {
+    font-size: 15px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
+  .hero .btn-wsp {
+    padding: 12px 22px;
+    font-size: 15px;
   }
 }
