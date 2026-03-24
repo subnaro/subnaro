@@ -22,6 +22,9 @@ function cargarScript(src, callback) {
 function cargarSeccion(seccion) {
   const contenedor = document.getElementById("contenido");
 
+  // 🔥 SIEMPRE SCROLL ARRIBA AL CAMBIAR SECCIÓN
+  window.scrollTo(0, 0);
+
   if (seccion === "inicio") {
     contenedor.innerHTML = `
       <section class="hero">
