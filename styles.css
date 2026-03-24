@@ -547,6 +547,17 @@ nav a:hover {
     background: #f7f7f7;
   }
 
+  .main-nav a.btn-wsp {
+    background: #25D366;
+    color: white;
+    font-weight: bold;
+  }
+
+  .main-nav a.btn-wsp:hover {
+    background: #1ebe5d;
+    color: white;
+  }
+
   .main-nav a.btn-wsp,
   .main-nav a.btn-simulador {
     font-size: 15px;
