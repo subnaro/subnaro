@@ -18,5 +18,15 @@ const productos = [
     nombre: "Remera Subnaro",
     precio: 5300,
     imagen: "destacados/remerasubnaro.png"
+  },
+  {
+    nombre: "Mouse Pad Subnaro",
+    precio: 3200,
+    imagen: "destacados/mousepad.png"
+  },
+  {
+    nombre: "Articulos Varios",
+    precio: 0,
+    imagen: "destacados/varios.png"
   }
 ];
