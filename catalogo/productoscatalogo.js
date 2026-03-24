@@ -12,13 +12,13 @@ const productosCatalogo = [
   {
     nombre: "Signos",
     precio: 7000,
-    imagen: "./img.catalogo/signos1.png",
+    imagen: "catalogo/img.catalogo/signos1.png",
     galeria: generarGaleria("signos", 4)
   },
   {
     nombre: "Planetas",
     precio: 7000,
-    imagen: "./img.catalogo/planetas1.png",
+    imagen: "catalogo/img.catalogo/planetas1.png",
     galeria: generarGaleria("planetas", 4)
   }
 ];
