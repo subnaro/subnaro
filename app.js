@@ -69,10 +69,22 @@ function cargarSeccion(seccion) {
       .then(html => {
         contenedor.innerHTML = html;
 
-        // 🔥 INICIAR CATÁLOGO (CLAVE)
-        if (typeof iniciarCatalogo === "function") {
-          iniciarCatalogo();
-        }
+        // 🔥 CARGAR JS DEL CATÁLOGO DINÁMICAMENTE
+
+        const script1 = document.createElement("script");
+        script1.src = "catalogo/productoscatalogo.js";
+
+        const script2 = document.createElement("script");
+        script2.src = "catalogo/catalogo.js";
+
+        document.body.appendChild(script1);
+        document.body.appendChild(script2);
+
+        script2.onload = () => {
+          if (typeof iniciarCatalogo === "function") {
+            iniciarCatalogo();
+          }
+        };
       });
   }
 
