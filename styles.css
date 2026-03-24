@@ -468,18 +468,26 @@ nav a:hover {
     font-size: 12px;
   }
 
-  /* HERO MOBILE: muestra más imagen sin cortar tanto */
   .hero {
-    min-height: calc(100vh - 82px);
-    height: auto;
-    background-size: contain;
+    min-height: auto;
+    height: 540px;
+    padding: 0 16px 24px;
+    align-items: flex-end;
+    background-size: 100% auto;
     background-position: center top;
     background-repeat: no-repeat;
-    background-color: #000;
-    padding: 40px 16px;
+    background-color: #fff;
   }
 
-  /* FONDO2 MOBILE: mantiene el banner prolijo y ocupando bien la sección */
+  .hero .overlay {
+    background: rgba(0, 0, 0, 0.18);
+  }
+
+  .hero-content {
+    max-width: 100%;
+    padding: 18px 10px 10px;
+  }
+
   .productos.fondo2 {
     background-size: cover;
     background-position: center center;
@@ -492,10 +500,13 @@ nav a:hover {
 
   .hero h1 {
     font-size: 32px;
+    line-height: 1.08;
+    margin-bottom: 10px;
   }
 
   .hero p {
     font-size: 16px;
+    margin-bottom: 18px;
   }
 
   .footer-container {
@@ -542,6 +553,17 @@ nav a:hover {
     font-size: 11px;
   }
 
+  .hero {
+    height: 500px;
+    padding: 0 12px 20px;
+    background-size: 100% auto;
+    background-position: center top;
+  }
+
+  .hero-content {
+    padding: 14px 8px 8px;
+  }
+
   .whatsapp-float {
     width: 56px;
     height: 56px;
@@ -582,11 +604,24 @@ nav a:hover {
     font-size: 10px;
   }
 
+  .hero {
+    height: 500px;
+    padding: 0 12px 20px;
+    background-size: 100% auto;
+    background-position: center top;
+  }
+
+  .hero-content {
+    padding: 14px 8px 8px;
+  }
+
   .hero h1 {
     font-size: 28px;
+    line-height: 1.08;
   }
 
   .hero p {
     font-size: 15px;
+    margin-bottom: 16px;
   }
 }
