@@ -1,8 +1,8 @@
 const productos = [
   {
-    nombre: "Taza Ofial SUBNARO",
-    precio: 5300,
-    imagen: "destacados/tazasubnaro.png"
+    nombre: "PROMO ENAMORADOS",
+    precio: 12200,
+    imagen: "destacados/enamorados.png"
   },
   {
     nombre: "Taza Personalizable",
@@ -28,5 +28,10 @@ const productos = [
     nombre: "Articulos Varios",
     precio: 0,
     imagen: "destacados/varios.png"
+  },
+  {
+    nombre: "Taza Ofial SUBNARO",
+    precio: 5300,
+    imagen: "destacados/tazasubnaro.png"
   }
 ];
