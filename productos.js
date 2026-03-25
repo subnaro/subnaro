@@ -15,9 +15,9 @@ const productos = [
     imagen: "destacados/planetas.png"
   },
   {
-    nombre: "Remera Subnaro",
+    nombre: "Remera Personalizable",
     precio: 5300,
-    imagen: "destacados/remerasubnaro.png"
+    imagen: "destacados/remera.png"
   },
   {
     nombre: "Mouse Pad Subnaro",
