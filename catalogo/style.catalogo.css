@@ -243,8 +243,10 @@ body {
     padding: 95px 16px 50px;
   }
 
-  .grid {
+  .catalogo .grid {
     grid-template-columns: 1fr;
+    max-width: 380px;
+    margin: 0 auto;
   }
 
   .card img,
