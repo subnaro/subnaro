@@ -111,7 +111,7 @@ nav a:hover {
   position: relative;
   text-align: center;
   overflow: hidden;
-  background: #000;
+  background: transparent;
 }
 
 .hero-slider-viewport {
@@ -119,17 +119,14 @@ nav a:hover {
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  padding: 0 clamp(10px, 2.5vw, 36px);
+  display: block;
+  padding: 0;
 }
 
 .hero-slider-track {
-  display: flex;
-  align-items: center;
-  gap: clamp(12px, 1.8vw, 28px);
-  will-change: transform;
-  transition: transform 0.85s ease;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .hero-slider-track.sin-transicion {
@@ -137,25 +134,26 @@ nav a:hover {
 }
 
 .hero-slide {
-  flex: 0 0 80%; /* 👈 ocupa casi todo el ancho */
+  flex: 0 0 100%;
   height: 100%;
-  opacity: 0.4;
-  transform: scale(0.9);
-  transition: all 0.8s ease;
+  opacity: 0;
+  transform: scale(1);
+  transition: opacity 0.8s ease;
+  position: absolute;
+  inset: 0;
 }
 
 .hero-slide.is-active {
   opacity: 1;
-  transform: scale(1);
-  filter: saturate(1);
+  z-index: 1;
 }
 
 .hero-slide-imagen {
   width: 100%;
   height: 100%;
-  border-radius: 20px;
+  border-radius: 0;
   background-position: center;
-  background-size: cover; /* 👈 mantiene calidad */
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
@@ -163,13 +161,13 @@ nav a:hover {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.34);
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
 }
 
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   color: white;
   width: min(92%, 760px);
   padding: 20px;
@@ -462,11 +460,6 @@ nav a:hover {
     height: clamp(280px, 52vw, 560px);
   }
 
-  .hero-slide {
-    height: clamp(240px, 48vw, 500px);
-    opacity: 0.46;
-  }
-
   .hero-content {
     width: min(94%, 660px);
   }
@@ -567,28 +560,6 @@ nav a:hover {
     height: clamp(260px, 62vw, 460px);
   }
 
-.hero-slider-viewport {
-  padding: 0; /* 👈 elimina bordes negros laterales */
-}
-
-  .hero-slider-track {
-    gap: 10px;
-  }
-
-  .hero-slide {
-    height: clamp(220px, 56vw, 420px);
-    opacity: 0.6;
-    transform: scale(0.94);
-  }
-
-  .hero-slide.is-active {
-    transform: scale(1);
-  }
-
-  .hero-slide-imagen {
-    border-radius: 16px;
-  }
-
   .hero .overlay {
     background: rgba(0, 0, 0, 0.28);
   }
@@ -652,20 +623,6 @@ nav a:hover {
     height: clamp(230px, 66vw, 390px);
   }
 
-.hero-slider-viewport {
-  padding: 0; /* 👈 elimina bordes negros laterales */
-}
-
-  .hero-slide {
-    height: clamp(190px, 58vw, 340px);
-    opacity: 0.72;
-    transform: scale(0.98);
-  }
-
-  .hero-slide:not(.is-active) {
-    opacity: 0.45;
-  }
-
   .hero-content {
     width: 96%;
     padding: 12px 8px;
@@ -719,14 +676,6 @@ nav a:hover {
 
   .hero {
     height: clamp(220px, 70vw, 340px);
-  }
-
-.hero-slider-viewport {
-  padding: 0; /* 👈 elimina bordes negros laterales */
-}
-
-  .hero-slide {
-    height: clamp(180px, 60vw, 300px);
   }
 
   .hero-content {
