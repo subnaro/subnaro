@@ -103,18 +103,16 @@ nav a:hover {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* HERO SLIDER LATERAL */
+/* HERO SLIDER FULL COVER */
 .hero {
-  height: clamp(340px, 46vw, 760px);
+  height: clamp(320px, 42vw, 760px);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   text-align: center;
   overflow: hidden;
-  background:
-    radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 60%),
-    linear-gradient(180deg, #111 0%, #151515 100%);
+  background: #000;
 }
 
 .hero-slider-viewport {
@@ -122,20 +120,16 @@ nav a:hover {
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 2vw;
+  display: block;
+  padding: 0;
 }
 
 .hero-slider-track {
+  position: relative;
   display: flex;
-  align-items: center;
-  gap: 24px;
-  width: max-content;
+  width: 100%;
   height: 100%;
   transition: transform 0.8s ease;
-  will-change: transform;
 }
 
 .hero-slider-track.sin-transicion {
@@ -143,39 +137,24 @@ nav a:hover {
 }
 
 .hero-slide {
-  flex: 0 0 clamp(280px, 76vw, 1080px);
-  height: min(88%, 620px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.45;
-  transform: scale(0.88);
-  transition: transform 0.8s ease, opacity 0.8s ease, filter 0.8s ease;
-  filter: saturate(0.85);
-}
-
-.hero-slide.is-active {
-  opacity: 1;
-  transform: scale(1);
-  filter: saturate(1);
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .hero-slide-imagen {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   display: block;
-  user-select: none;
-  pointer-events: none;
 }
 
 .hero .overlay {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.28) 0%, rgba(0, 0, 0, 0.1) 18%, rgba(0, 0, 0, 0.1) 82%, rgba(0, 0, 0, 0.28) 100%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.30) 100%);
+  background: rgba(0, 0, 0, 0.34);
   z-index: 2;
   pointer-events: none;
 }
@@ -472,16 +451,7 @@ nav a:hover {
   }
 
   .hero {
-    height: clamp(300px, 58vw, 580px);
-  }
-
-  .hero-slider-track {
-    gap: 16px;
-  }
-
-  .hero-slide {
-    flex: 0 0 82vw;
-    height: min(84%, 480px);
+    height: clamp(280px, 52vw, 560px);
   }
 
   .hero-content {
@@ -581,33 +551,11 @@ nav a:hover {
   }
 
   .hero {
-    height: clamp(270px, 72vw, 440px);
-  }
-
-  .hero-slider-viewport {
-    padding: 0 1vw;
-  }
-
-  .hero-slider-track {
-    gap: 10px;
-  }
-
-  .hero-slide {
-    flex: 0 0 90vw;
-    height: min(82%, 360px);
-    opacity: 0.62;
-    transform: scale(0.94);
-  }
-
-  .hero-slide.is-active {
-    opacity: 1;
-    transform: scale(1);
+    height: clamp(260px, 62vw, 460px);
   }
 
   .hero .overlay {
-    background:
-      linear-gradient(90deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.06) 20%, rgba(0, 0, 0, 0.06) 80%, rgba(0, 0, 0, 0.16) 100%),
-      linear-gradient(180deg, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0.24) 100%);
+    background: rgba(0, 0, 0, 0.28);
   }
 
   .hero-content {
@@ -666,12 +614,7 @@ nav a:hover {
   }
 
   .hero {
-    height: clamp(240px, 78vw, 380px);
-  }
-
-  .hero-slide {
-    flex: 0 0 92vw;
-    height: min(80%, 300px);
+    height: clamp(230px, 66vw, 390px);
   }
 
   .hero-content {
@@ -726,12 +669,7 @@ nav a:hover {
   }
 
   .hero {
-    height: clamp(220px, 82vw, 330px);
-  }
-
-  .hero-slide {
-    flex: 0 0 94vw;
-    height: min(78%, 260px);
+    height: clamp(220px, 70vw, 340px);
   }
 
   .hero-content {

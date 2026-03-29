@@ -95,6 +95,7 @@ function cargarSeccion(seccion) {
 
   cerrarMenuHamburguesa();
   detenerCarruselHero();
+
   window.scrollTo(0, 0);
 
   if (seccion === "inicio") {
@@ -256,39 +257,9 @@ function iniciarCarruselHero() {
     return slide;
   }
 
-  function obtenerIndiceRealVisible() {
-    if (indiceActual === 0) return totalReales;
-    if (indiceActual === totalReales + 1) return 1;
-    return indiceActual;
-  }
-
-  function marcarSlideActiva() {
-    const indiceReal = obtenerIndiceRealVisible();
-    const slides = track.querySelectorAll(".hero-slide");
-
-    slides.forEach((slide) => {
-      const esActiva =
-        slide.dataset.clone !== "true" &&
-        Number(slide.dataset.realIndex) === indiceReal;
-
-      slide.classList.toggle("is-active", esActiva);
-    });
-  }
-
   function actualizarPosicion(animar = true) {
-    const slides = track.querySelectorAll(".hero-slide");
-    const slideObjetivo = slides[indiceActual];
-
-    if (!slideObjetivo) return;
-
     track.classList.toggle("sin-transicion", !animar);
-
-    const centroViewport = viewport.clientWidth / 2;
-    const centroSlide = slideObjetivo.offsetLeft + slideObjetivo.offsetWidth / 2;
-    const desplazamiento = centroSlide - centroViewport;
-
-    track.style.transform = `translateX(-${desplazamiento}px)`;
-    marcarSlideActiva();
+    track.style.transform = `translateX(-${indiceActual * 100}%)`;
   }
 
   async function cargarImagenesHero() {
@@ -316,9 +287,7 @@ function iniciarCarruselHero() {
     if (totalReales === 1) {
       track.appendChild(crearSlide(imagenes[0], 1, false));
       indiceActual = 0;
-      requestAnimationFrame(() => {
-        actualizarPosicion(false);
-      });
+      track.style.transform = "translateX(0)";
       return;
     }
 
