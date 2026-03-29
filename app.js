@@ -218,9 +218,9 @@ function iniciarCarruselHero() {
   }
 
   async function cargarImagenesHero() {
-    const existeBase = await verificarImagen("img/fondo.png");
+    const existeBase = await verificarImagen("img/hero.png");
     if (existeBase) {
-      imagenes.push("img/fondo.png");
+      imagenes.push("img/hero.png");
     }
 
     let i = 1;
