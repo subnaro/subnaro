@@ -30,7 +30,7 @@ const productos = [
     imagen: "destacados/varios.png"
   },
   {
-    nombre: "Taza Ofial SUBNARO",
+    nombre: "Taza Oficial SUBNARO",
     precio: 5300,
     imagen: "destacados/tazasubnaro.png"
   }
