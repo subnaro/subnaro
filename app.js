@@ -33,7 +33,9 @@ function configurarMenuHamburguesa() {
   });
 
   document.addEventListener("click", (e) => {
-    const clicFueraDelMenu = !mainNav.contains(e.target) && !menuToggle.contains(e.target);
+    const clicFueraDelMenu =
+      !mainNav.contains(e.target) && !menuToggle.contains(e.target);
+
     if (clicFueraDelMenu) {
       cerrarMenuHamburguesa();
     }
@@ -93,13 +95,12 @@ function cargarSeccion(seccion) {
 
   cerrarMenuHamburguesa();
   detenerCarruselHero();
-
   window.scrollTo(0, 0);
 
   if (seccion === "inicio") {
     contenedor.innerHTML = `
       <section class="hero hero-slider" id="hero">
-        <div class="hero-slider-viewport">
+        <div class="hero-slider-viewport" id="heroSliderViewport">
           <div class="hero-slider-track" id="heroSliderTrack"></div>
         </div>
 
@@ -218,7 +219,7 @@ function cargarSeccion(seccion) {
 }
 
 function iniciarCarruselHero() {
-  const viewport = document.getElementById("hero");
+  const viewport = document.getElementById("heroSliderViewport");
   const track = document.getElementById("heroSliderTrack");
 
   if (!viewport || !track) return;
@@ -245,9 +246,11 @@ function iniciarCarruselHero() {
       slide.dataset.clone = "true";
     }
 
-    const imagen = document.createElement("div");
+    const imagen = document.createElement("img");
     imagen.className = "hero-slide-imagen";
-    imagen.style.backgroundImage = `url("${src}")`;
+    imagen.src = src;
+    imagen.alt = `Imagen hero ${realIndex}`;
+    imagen.draggable = false;
 
     slide.appendChild(imagen);
     return slide;
@@ -280,8 +283,9 @@ function iniciarCarruselHero() {
 
     track.classList.toggle("sin-transicion", !animar);
 
-    const desplazamiento =
-      slideObjetivo.offsetLeft - (viewport.clientWidth - slideObjetivo.offsetWidth) / 2;
+    const centroViewport = viewport.clientWidth / 2;
+    const centroSlide = slideObjetivo.offsetLeft + slideObjetivo.offsetWidth / 2;
+    const desplazamiento = centroSlide - centroViewport;
 
     track.style.transform = `translateX(-${desplazamiento}px)`;
     marcarSlideActiva();
@@ -312,7 +316,9 @@ function iniciarCarruselHero() {
     if (totalReales === 1) {
       track.appendChild(crearSlide(imagenes[0], 1, false));
       indiceActual = 0;
-      actualizarPosicion(false);
+      requestAnimationFrame(() => {
+        actualizarPosicion(false);
+      });
       return;
     }
 
