@@ -28,7 +28,7 @@ function configurarMenuHamburguesa() {
 
   window.addEventListener("resize", () => {
     if (window.innerWidth > 768) {
-      cerrarMenuHamburguesa();
+      cerrarMenuHambuesa();
     }
   });
 
@@ -156,6 +156,14 @@ function cargarSeccion(seccion) {
           © Subnaro - Todos los derechos reservados
         </div>
       </footer>
+
+      <div id="modalImagen" class="modal-imagen oculto" onclick="cerrarModalImagen(event)">
+        <div class="modal-imagen-overlay"></div>
+        <div class="modal-imagen-contenido">
+          <button class="modal-imagen-cerrar" onclick="cerrarModalImagen(event)">×</button>
+          <img id="modalImagenGrande" src="" alt="Imagen ampliada">
+        </div>
+      </div>
     `;
 
     cargarProductos();
@@ -350,7 +358,12 @@ function cargarProductos() {
 
     contenedor.innerHTML += `
       <div class="card">
-        <img src="${producto.imagen}" class="img-producto" alt="${producto.nombre}">
+        <img
+          src="${producto.imagen}"
+          class="img-producto"
+          alt="${producto.nombre}"
+          onclick="abrirModalImagen('${producto.imagen}', '${producto.nombre.replace(/'/g, "\\'")}')"
+        >
         <div class="card-content">
           <h3>${producto.nombre}</h3>
           <p class="precio">$${producto.precio}</p>
@@ -362,3 +375,40 @@ function cargarProductos() {
     `;
   });
 }
+
+function abrirModalImagen(src, nombre) {
+  const modal = document.getElementById("modalImagen");
+  const imagen = document.getElementById("modalImagenGrande");
+
+  if (!modal || !imagen) return;
+
+  imagen.src = src;
+  imagen.alt = nombre || "Imagen ampliada";
+  modal.classList.remove("oculto");
+  document.body.style.overflow = "hidden";
+}
+
+function cerrarModalImagen(event) {
+  if (event) {
+    const contenido = document.querySelector(".modal-imagen-contenido");
+    const hizoClickDentroDelContenido =
+      contenido && contenido.contains(event.target) && !event.target.classList.contains("modal-imagen-cerrar");
+
+    if (hizoClickDentroDelContenido) return;
+  }
+
+  const modal = document.getElementById("modalImagen");
+  const imagen = document.getElementById("modalImagenGrande");
+
+  if (!modal || !imagen) return;
+
+  modal.classList.add("oculto");
+  imagen.src = "";
+  document.body.style.overflow = "";
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    cerrarModalImagen();
+  }
+});

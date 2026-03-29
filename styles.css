@@ -269,6 +269,7 @@ nav a:hover {
   object-fit: contain;
   background: #fff;
   padding: 10px;
+  cursor: pointer;
 }
 
 .card-content {
@@ -294,6 +295,77 @@ nav a:hover {
   border-radius: 8px;
   width: 100%;
   cursor: pointer;
+}
+
+/* MODAL IMAGEN DESTACADOS */
+.modal-imagen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.oculto {
+  display: none !important;
+}
+
+.modal-imagen-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+}
+
+.modal-imagen-contenido {
+  position: relative;
+  z-index: 2;
+  width: min(92vw, 980px);
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+#modalImagenGrande {
+  display: block;
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  animation: zoomModal 0.25s ease;
+}
+
+.modal-imagen-cerrar {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #111;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 3;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+@keyframes zoomModal {
+  from {
+    transform: scale(0.86);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* CONTACTO */
@@ -575,6 +647,25 @@ nav a:hover {
     padding: 60px 20px;
   }
 
+  .modal-imagen-contenido {
+    width: 94vw;
+    padding: 10px;
+  }
+
+  #modalImagenGrande {
+    max-height: 78vh;
+    border-radius: 12px;
+    padding: 8px;
+  }
+
+  .modal-imagen-cerrar {
+    top: -6px;
+    right: -2px;
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
+  }
+
   .footer-container {
     padding: 40px 20px 30px;
   }
@@ -684,5 +775,24 @@ nav a:hover {
   .hero p {
     font-size: 15px;
     margin-bottom: 16px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-imagen-contenido {
+    width: 96vw;
+    padding: 8px;
+  }
+
+  #modalImagenGrande {
+    max-height: 74vh;
+    padding: 6px;
+  }
+
+  .modal-imagen-cerrar {
+    top: -4px;
+    right: 4px;
   }
 }
