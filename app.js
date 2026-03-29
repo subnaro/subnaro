@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 let heroIntervalo = null;
+let heroResizeHandler = null;
+let heroTransitionHandler = null;
+let heroTrackActual = null;
 
 function configurarMenuHamburguesa() {
   const menuToggle = document.getElementById("menuToggle");
@@ -50,7 +53,7 @@ function cerrarMenuHamburguesa() {
 
 function eliminarScriptSiExiste(src) {
   const scripts = document.querySelectorAll(`script[src="${src}"]`);
-  scripts.forEach(script => script.remove());
+  scripts.forEach((script) => script.remove());
 }
 
 function cargarScript(src, callback) {
@@ -70,10 +73,23 @@ function detenerCarruselHero() {
     clearInterval(heroIntervalo);
     heroIntervalo = null;
   }
+
+  if (heroResizeHandler) {
+    window.removeEventListener("resize", heroResizeHandler);
+    heroResizeHandler = null;
+  }
+
+  if (heroTrackActual && heroTransitionHandler) {
+    heroTrackActual.removeEventListener("transitionend", heroTransitionHandler);
+  }
+
+  heroTrackActual = null;
+  heroTransitionHandler = null;
 }
 
 function cargarSeccion(seccion) {
   const contenedor = document.getElementById("contenido");
+  if (!contenedor) return;
 
   cerrarMenuHamburguesa();
   detenerCarruselHero();
@@ -82,10 +98,13 @@ function cargarSeccion(seccion) {
 
   if (seccion === "inicio") {
     contenedor.innerHTML = `
-      <section class="hero" id="hero">
-        <div class="hero-bg bg1"></div>
-        <div class="hero-bg bg2"></div>
+      <section class="hero hero-slider" id="hero">
+        <div class="hero-slider-viewport">
+          <div class="hero-slider-track" id="heroSliderTrack"></div>
+        </div>
+
         <div class="overlay"></div>
+
         <div class="hero-content">
           <h1>Regalos únicos que hablan por vos</h1>
           <p>Personalizá tazas, remeras y más con tu estilo</p>
@@ -144,8 +163,8 @@ function cargarSeccion(seccion) {
 
   if (seccion === "catalogo") {
     fetch("catalogo/catalogo.html")
-      .then(res => res.text())
-      .then(html => {
+      .then((res) => res.text())
+      .then((html) => {
         contenedor.innerHTML = html;
 
         cargarScript("catalogo/productoscatalogo.js", () => {
@@ -162,8 +181,8 @@ function cargarSeccion(seccion) {
 
   if (seccion === "simulador") {
     fetch("simulador/simulador.html")
-      .then(res => res.text())
-      .then(html => {
+      .then((res) => res.text())
+      .then((html) => {
         contenedor.innerHTML = html;
 
         cargarScript("simulador/simulador.js", () => {
@@ -199,14 +218,14 @@ function cargarSeccion(seccion) {
 }
 
 function iniciarCarruselHero() {
-  const bg1 = document.querySelector(".bg1");
-  const bg2 = document.querySelector(".bg2");
+  const viewport = document.getElementById("hero");
+  const track = document.getElementById("heroSliderTrack");
 
-  if (!bg1 || !bg2) return;
+  if (!viewport || !track) return;
 
   const imagenes = [];
-  let indiceActual = 0;
-  let capaActivaEsBg1 = true;
+  let indiceActual = 1;
+  let totalReales = 0;
 
   function verificarImagen(src) {
     return new Promise((resolve) => {
@@ -215,6 +234,57 @@ function iniciarCarruselHero() {
       img.onerror = () => resolve(false);
       img.src = src;
     });
+  }
+
+  function crearSlide(src, realIndex, esClon = false) {
+    const slide = document.createElement("div");
+    slide.className = "hero-slide";
+    slide.dataset.realIndex = String(realIndex);
+
+    if (esClon) {
+      slide.dataset.clone = "true";
+    }
+
+    const imagen = document.createElement("div");
+    imagen.className = "hero-slide-imagen";
+    imagen.style.backgroundImage = `url("${src}")`;
+
+    slide.appendChild(imagen);
+    return slide;
+  }
+
+  function obtenerIndiceRealVisible() {
+    if (indiceActual === 0) return totalReales;
+    if (indiceActual === totalReales + 1) return 1;
+    return indiceActual;
+  }
+
+  function marcarSlideActiva() {
+    const indiceReal = obtenerIndiceRealVisible();
+    const slides = track.querySelectorAll(".hero-slide");
+
+    slides.forEach((slide) => {
+      const esActiva =
+        slide.dataset.clone !== "true" &&
+        Number(slide.dataset.realIndex) === indiceReal;
+
+      slide.classList.toggle("is-active", esActiva);
+    });
+  }
+
+  function actualizarPosicion(animar = true) {
+    const slides = track.querySelectorAll(".hero-slide");
+    const slideObjetivo = slides[indiceActual];
+
+    if (!slideObjetivo) return;
+
+    track.classList.toggle("sin-transicion", !animar);
+
+    const desplazamiento =
+      slideObjetivo.offsetLeft - (viewport.clientWidth - slideObjetivo.offsetWidth) / 2;
+
+    track.style.transform = `translateX(-${desplazamiento}px)`;
+    marcarSlideActiva();
   }
 
   async function cargarImagenesHero() {
@@ -236,28 +306,57 @@ function iniciarCarruselHero() {
 
     if (imagenes.length === 0) return;
 
-    bg1.style.backgroundImage = `url("${imagenes[0]}")`;
-    bg1.style.opacity = "1";
-    bg2.style.opacity = "0";
+    totalReales = imagenes.length;
+    track.innerHTML = "";
 
-    if (imagenes.length > 1) {
-      heroIntervalo = setInterval(() => {
-        indiceActual = (indiceActual + 1) % imagenes.length;
-        const siguienteImagen = imagenes[indiceActual];
-
-        if (capaActivaEsBg1) {
-          bg2.style.backgroundImage = `url("${siguienteImagen}")`;
-          bg2.style.opacity = "1";
-          bg1.style.opacity = "0";
-        } else {
-          bg1.style.backgroundImage = `url("${siguienteImagen}")`;
-          bg1.style.opacity = "1";
-          bg2.style.opacity = "0";
-        }
-
-        capaActivaEsBg1 = !capaActivaEsBg1;
-      }, 4000);
+    if (totalReales === 1) {
+      track.appendChild(crearSlide(imagenes[0], 1, false));
+      indiceActual = 0;
+      actualizarPosicion(false);
+      return;
     }
+
+    track.appendChild(crearSlide(imagenes[totalReales - 1], totalReales, true));
+
+    imagenes.forEach((src, index) => {
+      track.appendChild(crearSlide(src, index + 1, false));
+    });
+
+    track.appendChild(crearSlide(imagenes[0], 1, true));
+
+    indiceActual = 1;
+
+    requestAnimationFrame(() => {
+      actualizarPosicion(false);
+    });
+
+    heroTransitionHandler = (e) => {
+      if (e.propertyName !== "transform") return;
+
+      if (indiceActual === 0) {
+        indiceActual = totalReales;
+        actualizarPosicion(false);
+      }
+
+      if (indiceActual === totalReales + 1) {
+        indiceActual = 1;
+        actualizarPosicion(false);
+      }
+    };
+
+    track.addEventListener("transitionend", heroTransitionHandler);
+    heroTrackActual = track;
+
+    heroResizeHandler = () => {
+      actualizarPosicion(false);
+    };
+
+    window.addEventListener("resize", heroResizeHandler);
+
+    heroIntervalo = setInterval(() => {
+      indiceActual += 1;
+      actualizarPosicion(true);
+    }, 4500);
   }
 
   cargarImagenesHero();
@@ -270,7 +369,7 @@ function cargarProductos() {
 
   contenedor.innerHTML = "";
 
-  productos.forEach(producto => {
+  productos.forEach((producto) => {
     const mensaje = `Hola, quiero consultar por: ${producto.nombre} - $${producto.precio}`;
     const url = `https://wa.me/5491160584396?text=${encodeURIComponent(mensaje)}`;
 
