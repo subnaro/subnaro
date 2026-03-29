@@ -225,7 +225,7 @@ function iniciarCarruselHero() {
 
     let i = 1;
     while (true) {
-      const ruta = `img/fondo${i}.png`;
+      const ruta = `img/hero${i}.png`;
       const existe = await verificarImagen(ruta);
 
       if (!existe) break;
