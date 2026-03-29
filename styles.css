@@ -105,13 +105,30 @@ nav a:hover {
 /* HERO */
 .hero {
   height: 100vh;
-  background: url("img/fondo.png") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   text-align: center;
   overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: opacity 1s ease-in-out;
+  z-index: 0;
+}
+
+.bg1 {
+  opacity: 1;
+}
+
+.bg2 {
+  opacity: 0;
 }
 
 .hero .overlay {
@@ -573,6 +590,9 @@ nav a:hover {
     height: 62vw;
     min-height: 340px;
     max-height: 520px;
+  }
+
+  .hero-bg {
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
@@ -656,6 +676,9 @@ nav a:hover {
     height: 68vw;
     min-height: 320px;
     max-height: 470px;
+  }
+
+  .hero-bg {
     background-position: center top;
   }
 
@@ -720,6 +743,9 @@ nav a:hover {
     height: 72vw;
     min-height: 300px;
     max-height: 430px;
+  }
+
+  .hero-bg {
     background-position: center top;
   }
 

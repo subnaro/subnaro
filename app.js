@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   cargarSeccion("inicio");
 });
 
+let heroIntervalo = null;
+
 function configurarMenuHamburguesa() {
   const menuToggle = document.getElementById("menuToggle");
   const mainNav = document.getElementById("mainNav");
@@ -63,20 +65,30 @@ function cargarScript(src, callback) {
   document.body.appendChild(script);
 }
 
+function detenerCarruselHero() {
+  if (heroIntervalo) {
+    clearInterval(heroIntervalo);
+    heroIntervalo = null;
+  }
+}
+
 function cargarSeccion(seccion) {
   const contenedor = document.getElementById("contenido");
 
   cerrarMenuHamburguesa();
+  detenerCarruselHero();
 
   window.scrollTo(0, 0);
 
   if (seccion === "inicio") {
     contenedor.innerHTML = `
-      <section class="hero">
+      <section class="hero" id="hero">
+        <div class="hero-bg bg1"></div>
+        <div class="hero-bg bg2"></div>
         <div class="overlay"></div>
         <div class="hero-content">
-        <h1>Regalos únicos que hablan por vos</h1>
-        <p>Personalizá tazas, remeras y más con tu estilo</p>
+          <h1>Regalos únicos que hablan por vos</h1>
+          <p>Personalizá tazas, remeras y más con tu estilo</p>
           <a href="https://wa.me/5491160584396" target="_blank" class="btn-wsp btn-llamativo">
             Pedir por WhatsApp
           </a>
@@ -126,6 +138,7 @@ function cargarSeccion(seccion) {
     `;
 
     cargarProductos();
+    iniciarCarruselHero();
     return;
   }
 
@@ -183,6 +196,71 @@ function cargarSeccion(seccion) {
       }
     }, 200);
   }
+}
+
+function iniciarCarruselHero() {
+  const bg1 = document.querySelector(".bg1");
+  const bg2 = document.querySelector(".bg2");
+
+  if (!bg1 || !bg2) return;
+
+  const imagenes = [];
+  let indiceActual = 0;
+  let capaActivaEsBg1 = true;
+
+  function verificarImagen(src) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = src;
+    });
+  }
+
+  async function cargarImagenesHero() {
+    const existeBase = await verificarImagen("img/fondo.png");
+    if (existeBase) {
+      imagenes.push("img/fondo.png");
+    }
+
+    let i = 1;
+    while (true) {
+      const ruta = `img/fondo${i}.png`;
+      const existe = await verificarImagen(ruta);
+
+      if (!existe) break;
+
+      imagenes.push(ruta);
+      i++;
+    }
+
+    if (imagenes.length === 0) return;
+
+    bg1.style.backgroundImage = `url("${imagenes[0]}")`;
+    bg1.style.opacity = "1";
+    bg2.style.opacity = "0";
+
+    if (imagenes.length > 1) {
+      heroIntervalo = setInterval(() => {
+        indiceActual = (indiceActual + 1) % imagenes.length;
+        const siguienteImagen = imagenes[indiceActual];
+
+        if (capaActivaEsBg1) {
+          bg2.style.backgroundImage = `url("${siguienteImagen}")`;
+          bg2.style.opacity = "1";
+          bg1.style.opacity = "0";
+        } else {
+          bg1.style.backgroundImage = `url("${siguienteImagen}")`;
+          bg1.style.opacity = "1";
+          bg2.style.opacity = "0";
+        }
+
+        capaActivaEsBg1 = !capaActivaEsBg1;
+      }, 4000);
+    }
+  }
+
+  cargarImagenesHero();
 }
 
 function cargarProductos() {
