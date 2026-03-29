@@ -137,17 +137,11 @@ nav a:hover {
 }
 
 .hero-slide {
-  flex: 0 0 auto;
-  height: clamp(260px, 38vw, 680px);
-  aspect-ratio: 1920 / 900;
-  opacity: 0.38;
-  transform: scale(0.88);
-  transition:
-    transform 0.85s ease,
-    opacity 0.85s ease,
-    filter 0.85s ease,
-    box-shadow 0.85s ease;
-  filter: saturate(0.75);
+  flex: 0 0 80%; /* 👈 ocupa casi todo el ancho */
+  height: 100%;
+  opacity: 0.4;
+  transform: scale(0.9);
+  transition: all 0.8s ease;
 }
 
 .hero-slide.is-active {
@@ -159,11 +153,10 @@ nav a:hover {
 .hero-slide-imagen {
   width: 100%;
   height: 100%;
-  border-radius: clamp(16px, 2vw, 28px);
+  border-radius: 20px;
   background-position: center;
-  background-size: cover;
+  background-size: cover; /* 👈 mantiene calidad */
   background-repeat: no-repeat;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
 }
 
 .hero .overlay {
@@ -574,9 +567,9 @@ nav a:hover {
     height: clamp(260px, 62vw, 460px);
   }
 
-  .hero-slider-viewport {
-    padding: 0 10px;
-  }
+.hero-slider-viewport {
+  padding: 0; /* 👈 elimina bordes negros laterales */
+}
 
   .hero-slider-track {
     gap: 10px;
@@ -659,9 +652,9 @@ nav a:hover {
     height: clamp(230px, 66vw, 390px);
   }
 
-  .hero-slider-viewport {
-    padding: 0 8px;
-  }
+.hero-slider-viewport {
+  padding: 0; /* 👈 elimina bordes negros laterales */
+}
 
   .hero-slide {
     height: clamp(190px, 58vw, 340px);
@@ -728,9 +721,9 @@ nav a:hover {
     height: clamp(220px, 70vw, 340px);
   }
 
-  .hero-slider-viewport {
-    padding: 0 6px;
-  }
+.hero-slider-viewport {
+  padding: 0; /* 👈 elimina bordes negros laterales */
+}
 
   .hero-slide {
     height: clamp(180px, 60vw, 300px);
